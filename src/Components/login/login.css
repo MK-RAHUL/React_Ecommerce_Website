@@ -2,14 +2,135 @@
     margin: 0;
     padding: 0;
     background-color: #78B689;
+    font-family: serif;
 }
-.loginpage img{
+.loginpage .logimg{
     display: flex;
     width: 300px;
     height: 300px;
     position: absolute;
     top: 20%;
     left: 15%;
-  
+}
+.signin{
+    color: white;
+}
+.email_label{
+    position: relative;
+    top: 80px;
+    left: 53px;
+    font-size: larger;
+}
+.email_field{
+    position: relative;
+    top: 85px;
+    left: 165px;
+    width: 300px;
+    height: 50px;
+    border-radius: 10px;
+    background-color: #897C62;
+    border: 2px solid white;
+    padding-left: 70px;
+    font-size: 20px;
+    color: white;
+}
+.email_icon{
+    position: relative;
+    top: 82px;
+    left: 210px;
+    color: white;
+    border-radius: 10px;
+    background-color: #897C62;
+    z-index: 1;
+    font-size: xx-large;
+}
+.password_label{
+    position: relative;
+    top: 100px;
+    left: 66px;
+    font-size: larger;
 
+}
+.password_field{
+    position: relative;
+    top: 105px;
+    left: 165px;
+    width: 300px;
+    height: 50px;
+    border-radius: 10px;
+    background-color: #897C62;
+    border: 2px solid white;
+    padding-left: 70px;
+    font-size: 20px;
+    color: white;
+}
+.password_icon{
+    position: relative;
+    top: 102px;
+    left: 210px;
+    color: white;
+    border-radius: 10px;
+    background-color: #897C62;
+    z-index: 1;
+    font-size: xx-large;
+}
+.forget{
+    font-size: 15px;
+    float: right;
+    position: relative;
+    top: 112px;
+    right: 235px;
+}
+.line1{
+    border-left: 1.5px solid white;
+    height: 30px;
+    position: absolute;
+    top: 124px;
+    left: 728px;
+}
+.line2{
+    border-left: 1.5px solid white;
+    height: 30px;
+    position: absolute;
+    top: 223px;
+    left: 728px;
+}
+.logbtn{
+    width: 300px;
+    height: 45px;
+    position: relative;
+    top: 150px;
+    left: 238px;
+    background-color: #897C62;
+    color: white;
+    font-size: 20px;
+    border-radius: 10px;
+    border: none;
+}
+.or{
+    width: 30px;
+    position: relative;
+    top: 166px;
+    left: 730px;
+}
+.underline1{
+    border-bottom: 2px solid white;
+    width: 230px;
+    position: relative;
+    left: 630px;
+    top: 180px;
+}
+
+.google, .facebook ,.apple{
+    padding-left: 15px;
+    padding-right: 15px;
+    position: relative;
+    top: 175px;
+    left: 188px;
+}
+.account{
+    position: relative;
+    top: 200px;
+    left: 185px;
+    font-size: large;
 }
