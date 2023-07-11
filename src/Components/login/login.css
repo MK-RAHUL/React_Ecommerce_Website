@@ -34,6 +34,9 @@
     font-size: 20px;
     color: white;
 }
+.email_field::-webkit-input-placeholder{
+    color: white;
+}
 .email_icon{
     position: relative;
     top: 82px;
@@ -60,14 +63,18 @@
     height: 50px;
     border-radius: 10px;
     background-color: #897C62;
-    border: 2px solid white;
+    border: 2px solid #ffffff9c;
     padding-left: 70px;
     font-size: 20px;
     color: white;
+    padding-top: 7px;
+}
+.password_field::-webkit-input-placeholder{
+    color: #ffffff9c;
 }
 .password_icon{
     position: relative;
-    top: 101px;
+    top: 97px;
     left: 212px;
     color: white;
     border-radius: 10px;
@@ -92,7 +99,7 @@
     left: 728px;
 }
 .line2{
-    border-left: 1.5px solid white;
+    border-left: 1.5px solid #ffffffa4;
     height: 30px;
     position: absolute;
     top: 223px;
