@@ -1,0 +1,13 @@
+.homepage{
+    background-color: #F0D1D1;
+    width:100%;
+}
+.categories{
+    margin-top: 100px;
+}
+.image{
+    width: 30px;
+    height: 30px;
+    position: relative;
+    left: 60px;
+}

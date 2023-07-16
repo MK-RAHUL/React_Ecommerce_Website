@@ -1,19 +1,16 @@
 import React from 'react'
-import './login.css'
-import { Container } from 'react-bootstrap'
+import './login.css';
 import img1 from '../images/av2 1.png'
 import img2 from '../images/Google.png'
 import img3 from '../images/Facebook.png'
 import img4 from '../images/Apple.png'
 import img5 from '../images/email.png'
 import img6 from '../images/Password.png'
-import {AiTwotoneMail} from 'react-icons/ai'
-import {RiLockPasswordFill} from 'react-icons/ri'
 
 function Login() {
   return (
-    <div>
-        <Container className='loginpage'>
+    <div className='loginmainpage'>    
+      <div  className='loginpage'>
           <img src={img1} alt="login" className='logimg'/>
           <div className='signin'>
             <form action="signin">
@@ -25,11 +22,12 @@ function Login() {
               {/* <RiLockPasswordFill className='password_icon'/> */}
               <img src={img6} alt="" className='password_icon' />
               <input type="text" className='password_field' placeholder='**********' />
+              <p className='forget'>Forget Password ?</p>
+              <div className='line1'></div>
+              <div className='line2'></div>
+              <button className='logbtn'>Log In</button>
             </form>
-            <p className='forget'>Forget Password ?</p>
-            <div className='line1'></div>
-            <div className='line2'></div>
-            <button className='logbtn'>Log In</button>
+            
 
             <div>
               <div className='underline1'></div>
@@ -39,12 +37,13 @@ function Login() {
             <img src={img3} alt="" className='facebook' />
             <img src={img4} alt="" className='apple' />
 
-            <p className='account'>Don't have an account? Sign up</p>
+            <p className='account'>Don't have an account? <span className='signup'>Sign up</span></p>
 
 
             </div>
-        </Container>
     </div>
+    </div>
+
   )
 }
 

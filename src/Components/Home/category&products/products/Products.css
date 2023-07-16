@@ -1,0 +1,44 @@
+h2{
+    text-align: center;
+    padding-top: 50px;
+}
+.input_box{
+    width: 800px;
+    display: flex;
+    position: relative;
+    left: 23%;
+    margin-top: 20px;
+}
+.search{
+    padding: 10px;
+}
+.input{
+    outline: none;
+    border: none;
+    width: 637px;
+    height: 45px;
+    padding-left: 20px;
+}
+.addnew{
+    margin-left: 188px;
+    margin-top: 50px;
+}
+table{
+    position: relative;
+    left: 15%;
+    margin-top: 20px;
+}
+.product_image{
+    width: 20px;
+    height: 20px;
+    position: relative;
+    top: 3px;
+    margin-right: 10px;
+}
+.product_btn{
+    padding: 5px;
+    border-radius: 10px;
+    color: black;
+    background-color: white;
+    border: 1px solid grey;
+}
