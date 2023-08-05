@@ -1,13 +1,42 @@
-import React from 'react'
+import React, { useRef } from 'react'
 import Navbar from '../Home/Navbar/Navbar'
 import './Category_page.css'
 import {AiOutlineArrowDown} from 'react-icons/ai'
-import img1 from '../images/Rectangle 5.png'
 import img2 from '../images/🦆 icon _edit_.png'
 import img3 from '../images/trash-2.png'
+import { useState ,useEffect} from 'react'
+import { Link, useNavigate } from 'react-router-dom'
+import instance from '../../Axios'
+
+
 
 
 function Category_page() {
+
+  const [categories,setcategories]=useState([])
+  const navigate=useNavigate()
+
+  useEffect(() => {
+    instance.get("/api/category/allcategory").then(response =>{
+      setcategories(response.data)
+    })
+    .catch(error => {
+      console.error('Error fetching data:', error);
+    });
+  }, [])
+
+  const handledelete =(id)=>{
+    const confirm = window.confirm("Would You Like To Delete ?")
+    if(confirm){
+      instance.delete(`/api/category/CategoryDelete?id=${id}`)
+      .then(res =>{
+        console.log(res)
+        navigate('/category')
+      })
+      .catch(err => console.log(err))
+    }
+  }
+
   return (
     <div className='homepage'>
         <Navbar/>
@@ -17,114 +46,50 @@ function Category_page() {
         <input className='input' type="text" placeholder='Search Something...'/>
         <button className='search'>Search</button>
         </div>
-        <button className='addnew'>Add New Category</button>
+        <Link to='/category/add-category'><button className='addnew'>Add New Category</button></Link>
         <div className='table'>
             <table style={{textAlign:'center'}}>
+              <thead>
                 <tr>
-                    <th style={{paddingLeft:'10px',paddingRight:'10px'}}></th>
-                    <th style={{paddingLeft:'10px',paddingRight:'10px'}}>Category Name<AiOutlineArrowDown/></th>
-                    <th style={{paddingLeft:'60px',paddingRight:'60px'}}>Description<AiOutlineArrowDown/></th>
-                    <th style={{paddingLeft:'60px',paddingRight:'60px'}}>Image<AiOutlineArrowDown/></th>
-                    <th style={{paddingLeft:'60px',paddingRight:'60px'}}></th>
-                    <th style={{paddingLeft:'60px',paddingRight:'50px'}}></th>
+                    <th style={{paddingLeft:'10px',paddingRight:'10px',paddingTop:'20px'}}></th>
+                    <th style={{paddingLeft:'10px',paddingRight:'10px',paddingTop:'20px'}}>Category Name<AiOutlineArrowDown/></th>
+                    <th style={{paddingLeft:'60px',paddingRight:'60px',paddingTop:'20px'}}>Description<AiOutlineArrowDown/></th>
+                    <th style={{paddingLeft:'60px',paddingRight:'60px',paddingTop:'20px'}}>Image<AiOutlineArrowDown/></th>
+                    <th style={{paddingLeft:'60px',paddingRight:'60px',paddingTop:'20px'}}></th>
+                    <th style={{paddingLeft:'60px',paddingRight:'50px',paddingTop:'20px'}}></th>
                 </tr>
+                </thead>
+
+                {
+  categories.map((obj) => {
+    return (
+      <tbody key={obj.id}>
+        <tr>
+          <td></td>
+          <td style={{ paddingTop: '20px' }}>{obj.name}</td>
+          <td style={{ maxWidth: '10px', paddingTop: '20px' }}>{obj.description}</td>
+          <td style={{  paddingTop: '20px' }}>
+            <img className='image' src={`data:image/png;base64,${obj.image}`} />
+          </td>
+          <td><Link to={`/category/edit-category/${obj.id}`}><img src={img2} alt="" /></Link></td>
+          <td><img src={img3} onClick={e=>handledelete(obj.id)} /></td>
+        </tr>
+      </tbody>
+    );
+  })
+}
+
+              
+                <tfoot>
                 <tr>
-                  <td></td>
-                    <td>Laptops</td>
-                    <td>intel core i5, 6GB RAM</td>
-                    <td style={{display:'flex'}}><img className='image' src={img1} /></td>
-                    <td><img src={img2} alt="" /></td>
-                    <td> <img src={img3} alt="" /></td>
-                </tr>
-                <tr>
-                  <td></td>
-                    <td>Laptops</td>
-                    <td>intel core i5, 6GB RAM</td>
-                    <td style={{display:'flex'}}><img className='image' src={img1} /></td>
-                    <td><img src={img2} alt="" /></td>
-                    <td> <img src={img3} alt="" /></td>
-                </tr>
-                <tr>
-                  <td></td>
-                    <td>Laptops</td>
-                    <td>intel core i5, 6GB RAM</td>
-                    <td style={{display:'flex'}}><img className='image' src={img1} /></td>
-                    <td><img src={img2} alt="" /></td>
-                    <td> <img src={img3} alt="" /></td>
-                </tr>
-                <tr>
-                  <td></td>
-                    <td>Laptops</td>
-                    <td>intel core i5, 6GB RAM</td>
-                    <td style={{display:'flex'}}><img className='image' src={img1} /></td>
-                    <td><img src={img2} alt="" /></td>
-                    <td> <img src={img3} alt="" /></td>
-                </tr>
-                <tr>
-                  <td></td>
-                    <td>Laptops</td>
-                    <td>intel core i5, 6GB RAM</td>
-                    <td style={{display:'flex'}}><img className='image' src={img1} /></td>
-                    <td><img src={img2} alt="" /></td>
-                    <td> <img src={img3} alt="" /></td>
-                </tr>
-                <tr>
-                  <td></td>
-                    <td>Laptops</td>
-                    <td>intel core i5, 6GB RAM</td>
-                    <td style={{display:'flex'}}><img className='image' src={img1} /></td>
-                    <td><img src={img2} alt="" /></td>
-                    <td> <img src={img3} alt="" /></td>
-                </tr>
-                <tr>
-                  <td></td>
-                    <td>Laptops</td>
-                    <td>intel core i5, 6GB RAM</td>
-                    <td style={{display:'flex'}}><img className='image' src={img1} /></td>
-                    <td><img src={img2} alt="" /></td>
-                    <td> <img src={img3} alt="" /></td>
-                </tr>
-                <tr>
-                  <td></td>
-                    <td>Laptops</td>
-                    <td>intel core i5, 6GB RAM</td>
-                    <td style={{display:'flex'}}><img className='image' src={img1} /></td>
-                    <td><img src={img2} alt="" /></td>
-                    <td> <img src={img3} alt="" /></td>
-                </tr>
-                <tr>
-                  <td></td>
-                    <td>Laptops</td>
-                    <td>intel core i5, 6GB RAM</td>
-                    <td style={{display:'flex'}}><img className='image' src={img1} /></td>
-                    <td><img src={img2} alt="" /></td>
-                    <td> <img src={img3} alt="" /></td>
-                </tr>
-                <tr>
-                  <td></td>
-                    <td>Laptops</td>
-                    <td>intel core i5, 6GB RAM</td>
-                    <td style={{display:'flex'}}><img className='image' src={img1} /></td>
-                    <td><img src={img2} alt="" /></td>
-                    <td> <img src={img3} alt="" /></td>
-                </tr>
-                <tr>
-                  <td></td>
-                    <td>Laptops</td>
-                    <td>intel core i5, 6GB RAM</td>
-                    <td style={{display:'flex'}}><img className='image' src={img1} /></td>
-                    <td><img src={img2} alt="" /></td>
-                    <td> <img src={img3} alt="" /></td>
-                </tr>
-                <tr>
-                 
-                    <th><button className='product_btn'>PREVIOUS</button></th>
+                    <th style={{paddingTop:'20px'}}><button className='product_btn'>PREVIOUS</button></th>
                     <th></th>
-                    <th style={{paddingLeft:'70px'}}>Page 1 Of 10</th>
+                    <th style={{paddingLeft:'70px',paddingTop:'20px'}}>Page 1 Of 10</th>
                     <th></th>
                     <th></th>
-                    <th><button className='product_btn'>NEXT</button></th>
+                    <th style={{paddingTop:'20px'}}><button className='product_btn'>NEXT</button></th>
                 </tr>
+                </tfoot>
             </table>
             
         </div>

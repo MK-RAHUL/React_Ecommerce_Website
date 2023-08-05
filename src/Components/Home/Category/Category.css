@@ -1,0 +1,31 @@
+button{
+    padding: 12px;
+    background-color: #FF8A00;
+    color: white;
+    outline: none;
+    border: none;
+}
+.category_name{
+    margin-left: 50px;
+    margin-top: 100px;
+}
+.product_cards{
+    display: flex;
+}
+.cards{
+    margin-top: 15px;
+    margin-right: 20px;
+    overflow: hidden;
+    width: 500px;
+}
+.card_title{
+    text-align: center;
+    font-size: 10px;
+    background-color: #FFF6E4;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+    color: #FF8A00;
+}
+.posters::-webkit-scrollbar{
+    display: none;
+}
