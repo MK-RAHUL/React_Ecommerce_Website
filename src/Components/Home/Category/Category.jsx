@@ -1,17 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import './Category.css';
 import { Card } from 'react-bootstrap';
-// import img1 from '../../images/image 12-1.png' 
-import axios from '../../../Axios'
-import { useNavigate } from 'react-router-dom';
+import instance from '../../../Axios';
 function Category() {
   const [category,setcategory] =useState([])
-  const [imgs,setimgs] =useState()
-  
-
-
   useEffect(() => {
-    axios.get('/api/category/allcategory').then(response =>{
+    instance.get('/api/category/allcategory').then(response =>{
      setcategory(response.data)
     })
     .catch(error => {

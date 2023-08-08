@@ -13,6 +13,10 @@ import instance from '../../Axios'
 
 function Category_page() {
 
+  const [currentPage, setCurrentPage] = useState(1);
+  const categoryPerPage = 5; 
+
+
   const [categories,setcategories]=useState([])
   const navigate=useNavigate()
 
@@ -24,6 +28,9 @@ function Category_page() {
       console.error('Error fetching data:', error);
     });
   }, [])
+  const indexOfLastcategory = currentPage * categoryPerPage;
+const indexOfFirstcategory = indexOfLastcategory - categoryPerPage;
+const currentcategory = categories.slice(indexOfFirstcategory, indexOfLastcategory);
 
   const handledelete =(id)=>{
     const confirm = window.confirm("Would You Like To Delete ?")
@@ -61,7 +68,7 @@ function Category_page() {
                 </thead>
 
                 {
-  categories.map((obj) => {
+  currentcategory.map((obj) => {
     return (
       <tbody key={obj.id}>
         <tr>
@@ -82,12 +89,12 @@ function Category_page() {
               
                 <tfoot>
                 <tr>
-                    <th style={{paddingTop:'20px'}}><button className='product_btn'>PREVIOUS</button></th>
-                    <th></th>
-                    <th style={{paddingLeft:'70px',paddingTop:'20px'}}>Page 1 Of 10</th>
+                    <th style={{paddingTop:'20px'}}><button className='product_btn' onClick={() => setCurrentPage(currentPage - 1)} disabled={currentPage === 1}>PREVIOUS</button></th>
                     <th></th>
                     <th></th>
-                    <th style={{paddingTop:'20px'}}><button className='product_btn'>NEXT</button></th>
+                    <th></th>
+                    <th></th>
+                    <th style={{paddingTop:'20px'}}><button className='product_btn'onClick={() => setCurrentPage(currentPage + 1)} disabled={currentPage === Math.ceil(categories.length / categoryPerPage)}>NEXT</button></th>
                 </tr>
                 </tfoot>
             </table>

@@ -6,19 +6,22 @@ import img3 from '../../images/trash-2.png'
 import img4 from '../../images/Rectangle 5-1.png'
 import {Form,Modal,Button} from 'react-bootstrap'
 import { useState ,useEffect} from 'react'
-import { Link, useNavigate } from 'react-router-dom'
+import {  Link, useNavigate } from 'react-router-dom'
 import instance from '../../../Axios'
+
+
 function Products() {
+  const [currentPage, setCurrentPage] = useState(1);
+const productsPerPage = 5; 
 
   const [data, setData] = useState({
     name: '',
-    category: '',
-    price: '',
-    stock: '',
+    category: 0,
+    price: 0,
+    stock: 0,
     description: '',
-
+    image:''
   });
-
   const navigate =useNavigate()
     const [show, setShow] = useState(false);
     const handleClose = () =>{
@@ -30,14 +33,19 @@ function Products() {
     const [products,setproducts] = useState([])
 
     useEffect(() => {
-      instance.get('/api/Product/allProducts').then(response=>{
-        // console.log(response.data)
-        setproducts(response.data)
-      })
-      .catch(error => {
-        console.error('Error fetching data:', error);
-      });
-    }, [])
+      instance.get('/api/Product/allProducts')
+        .then(response => {
+          setproducts(response.data);
+        })
+        .catch(error => {
+          console.error('Error fetching data:', error);
+        });
+    }, []);
+    
+    const indexOfLastProduct = currentPage * productsPerPage;
+    const indexOfFirstProduct = indexOfLastProduct - productsPerPage;
+    const currentProducts = products.slice(indexOfFirstProduct, indexOfLastProduct);
+    
 
     const handledelete =(id)=>{
       const confirm = window.confirm("Would You Like To Delete ?")
@@ -50,13 +58,14 @@ function Products() {
         .catch(err => console.log(err))
       }
     }
-    
   return (
     <div className='products'>
         <h2>All Products</h2>
         <div className='input_box'>
+        <form >
         <input className='input' type="text" placeholder='Search Something...'/>
-        <button className='search'>Search</button>
+        <button className='search' type='submit'>Search</button>
+          </form>
         </div>
         <Link to='/products/add-products'><button className='addnew' onClick={handleShow}>Add New Product</button></Link>
         <>      
@@ -139,7 +148,7 @@ function Products() {
 
 
                 {
-                  products.map((obj)=>
+                  currentProducts.map((obj)=>
                   <tbody>
                   <tr key={obj.id}>
                       <td style={{display:'flex',paddingTop:'20px',paddingLeft:'10px'}}><img className='product_image' src={`data:image/png;base64,${obj.image}`} />{obj.name}</td>
@@ -154,18 +163,15 @@ function Products() {
               
                   )
                 }
-
-                
-               
                 <tfoot>
                 <tr>
-                    <th><button className='product_btn'>PREVIOUS</button></th>
+                    <th><button className='product_btn' onClick={() => setCurrentPage(currentPage - 1)} disabled={currentPage === 1}>PREVIOUS</button></th>
                     <th ></th>
-                    <th>Page 1 Of 10</th>
                     <th></th>
                     <th></th>
                     <th></th>
-                    <th><button className='product_btn'>NEXT</button></th>
+                    <th></th>
+                    <th><button className='product_btn' onClick={() => setCurrentPage(currentPage + 1)} disabled={currentPage === Math.ceil(products.length / productsPerPage)}>NEXT</button></th>
                 </tr>
                 </tfoot>
             </table>
