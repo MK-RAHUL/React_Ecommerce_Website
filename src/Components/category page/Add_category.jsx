@@ -1,6 +1,5 @@
 import React, {  useRef, useState } from 'react';
 import { Button } from 'react-bootstrap';
-import axios from '../../Axios';
 import { Link, useNavigate } from 'react-router-dom';
 import img4 from '../images/Rectangle 5-1.png'
 import instance from '../../Axios';
@@ -13,19 +12,17 @@ function Add_category() {
  const handleimageclick =()=>{
   inputref.current.click()
 }
- 
- const handleimagechange = (e) => {
-    console.log(e)
-    var reader= new FileReader()
-    reader.readAsDataURL(e.target.files[0])
-    reader.onload = () =>{
-      console.log(reader.result)
-      setimage(reader.result)
-    }
-    reader.onerror = err=>{
-      console.log("Error:",err)
-    }
- }; 
+ const handleimagechange = (event) => {
+   const file = event.target.files[0];
+   if (file) {
+     const reader = new FileReader();
+     reader.onload = () => {
+       const base64Data = reader.result.split(',')[1]; 
+       setimage(base64Data);
+     };
+     reader.readAsDataURL(file);
+   }
+ };
 
  
   const [data, setData] = useState({
@@ -38,7 +35,7 @@ function Add_category() {
     e.preventDefault();    
     const body={ "name": data.name,
     "description": data.description,
-    "image":''}
+    "image":image}
     console.log(body)
     instance.post('/api/category/CategoryInsert', body)
       .then((response) => {
@@ -86,7 +83,7 @@ function Add_category() {
             ></textarea>
           </div>
           <div onClick={handleimageclick}>
-               {image ? <img src={image} className='category_image' /> : <img src={img4} className='category_image' width={200} height={200} style={{float:'right'}}/>}
+               {image ? <img src={`data:image/png;base64,${image}`} className='category_image' width={200} height={200} style={{float:'right'}}/> : <img src={img4} className='category_image' width={200} height={200} style={{float:'right'}}/>}
                <input type="file" ref={inputref} onChange={handleimagechange} style={{display:'none'}} />
                </div>
           <Button type='submit' className='btn btn-success w-25'>

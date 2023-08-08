@@ -143,11 +143,11 @@ function Products() {
                   <tbody>
                   <tr key={obj.id}>
                       <td style={{display:'flex',paddingTop:'20px',paddingLeft:'10px'}}><img className='product_image' src={`data:image/png;base64,${obj.image}`} />{obj.name}</td>
-                      <td style={{paddingTop:'20px'}}>{obj.categoryName}</td>
+                      <td style={{paddingTop:'20px'}}>{obj.categoryId}</td>
                       <td style={{paddingTop:'20px'}}>{obj.stock}</td>
                       <td style={{paddingTop:'20px'}}>{obj.price}</td>
                       <td style={{paddingTop:'20px'}}>{obj.description}</td>
-                      <td style={{paddingTop:'20px'}}><img src={img2} alt="" /></td>
+                      <td style={{paddingTop:'20px'}}><Link to={`/products/edit-products/${obj.id}`}><img src={img2}/></Link></td>
                       <td style={{paddingTop:'20px'}}> <img src={img3} onClick={e=>handledelete(obj.id)} /></td>
                   </tr>
                   </tbody>

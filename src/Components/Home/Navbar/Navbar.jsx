@@ -19,7 +19,7 @@ function Navbar() {
         <div className='navbar'>
             <nav>
                 <h4>
-                    ZUDIO
+                    TRENDZZ
                 </h4>   
                 <ul>
                     <li> <NavLink to='/products'>Products</NavLink></li>

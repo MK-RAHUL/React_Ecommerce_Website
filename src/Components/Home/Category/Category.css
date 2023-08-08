@@ -11,6 +11,10 @@ button{
 }
 .product_cards{
     display: flex;
+    overflow-x: auto;
+}
+.product_cards::-webkit-scrollbar{
+    display: none;
 }
 .cards{
     margin-top: 15px;
@@ -25,7 +29,4 @@ button{
     border-bottom-left-radius: 5px;
     border-bottom-right-radius: 5px;
     color: #FF8A00;
-}
-.posters::-webkit-scrollbar{
-    display: none;
 }

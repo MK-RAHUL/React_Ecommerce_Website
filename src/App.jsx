@@ -7,6 +7,7 @@ import Parent_product from './Components/Home/Parent products/Parent_product';
 import Add_category from './Components/category page/Add_category';
 import Edit_category from './Components/category page/Edit_category';
 import Add_products from './Components/Home/products/Add_products';
+import Edit_product from './Components/Home/products/Edit_product';
 
 
 function App() {
@@ -16,6 +17,7 @@ function App() {
         <Route path="/" element={<Login />} />
         <Route path="/Products" element={<Parent_product />}></Route>
         <Route path='/products/add-products' element={<Add_products/>}/>
+        <Route path='products/edit-products/:id' element={<Edit_product/>}/>
         <Route path="/category" element={<Category_page />}></Route>
         <Route path='/category/add-category' element={<Add_category/>}></Route>
         <Route path='/category/edit-category/:id' element={<Edit_category/>}/>

@@ -23,21 +23,30 @@ function Category() {
   return (
     <div className='category_name'>
       <button>Product Category</button>
+
       <div className="product_cards">
+  {category.map((obj, id) => (
+    <div className='posters' key={id}>
+      <Card className='cards' style={{ width: '200px', height: '150px' }}>
+        <Card.Img
+          className='card_img'
+          variant="top"
+          src={`data:image/png;base64,${obj.image}`}
+          style={{
+            width: '120px',
+            height: '120px',
+            margin: 'auto', 
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+          }}
+        />
+        <Card.Title className='card_title'>{obj.name}</Card.Title>
+      </Card>
+    </div>
+  ))}
+</div>
 
-      {
-        category.map((obj,id)=>
-        <div className='posters'>         
-          <Card key={id} className='cards' style={{ width: '200px', height: '150px' }}>
-          <Card.Img variant="top" src={`data:image/png;base64,${obj.image}`} style={{ width: '120px', height: '120px' }} />
-          <Card.Title className='card_title'>{obj.name}</Card.Title>
-        </Card>
-        </div>
- 
-        )
-          }
-
-      </div>
     </div>
   );
 }
